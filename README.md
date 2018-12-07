@@ -16,7 +16,7 @@ Setup
 ---
 - Assuming you have installed all the dependencies, 
 
-   `cd` into `gstartpage`
+   `cd` into the project directory
 
    `npm install`
 
