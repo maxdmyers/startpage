@@ -1,0 +1,30 @@
+{
+  "name": "maxdmyers-startpage",
+  "description": "A start page based on Bootstrap 4 and Material Design 2.",
+  "version": "1.0.0",
+  "homepage": "https://maxmyers.me",
+  "author": "Max Myers <m1a8x2@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.0.0",
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rm": "^1.0.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "popper.js": "^1.14.3",
+    "node-sass": "^4.7.2"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
