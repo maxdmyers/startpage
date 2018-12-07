@@ -244,8 +244,10 @@
         document.getElementById('today').innerHTML = day + ', ' + mon + ' ' + today.getDate();
       }
 
-      window.onload = startTime;
-      window.onload = checkDate;
+      window.onload = function() {
+        checkDate();
+        startTime();
+      }
     </script>
   </body>
 </html>
