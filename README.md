@@ -1,7 +1,7 @@
 # Start Page
 A start page based on Bootstrap 4 and Material Design 2 (specifically the Google Material Theme).
 
-![alt text](https://github.com/maxdmyers/startpage/raw/master/screenshot.png "Start Page")
+![alt text](https://github.com/ars75/startpage/blob/master/assets/screenshot/screenshot-v1.png "Start Page")
 
 Dependencies
 ---
