@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    </style>
+
+    <font face="Open Sans"></font>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/build/css/all.min.css">
+
+    <title>New Tab</title>
+</head>
+
+<body bgcolor="#282923">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 left-col">
+                <h2 class="text-center" id="salutation">Greetings</h2>
+                <div class="searchbox">
+                    <form class="SearchForm" method="get" action="https://google.com/search" autocomplete="off">
+                        <input type="text" name="q" placeholder="Search Google" />
+                    </form>
+                    <span class="search-icon">
+              <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            </span>
+                </div>
+                <div class="headlines mt-5 row">
+                    <div class="col-md-10 offset-md-1">
+                        <h6>Headlines</h6>
+                        <ul class="list-unstyled" id="newsList">
+<!-- 
+                            <li class="card px-4 py-3 mb-2">
+                                <a href="https://news.google.com/articles/CAIiEE24Ilek4jRlY0JFK9V0dAUqFQgEKg0IACoGCAowuLUIMNFnMLnhAg?hl=en-US&gl=US&ceid=US%3Aen">
+                                    <h5>
+                                        Robert Mueller’s Bigger Collusion Picture Is Starting to Emerge
+                                    </h5>
+                                </a>
+                                <div class="meta">
+                                    <span class="site">Slate</span>
+                                    <time>4 hours ago</time>
+                                </div>
+                            </li>
+ -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="right-col">
+                    <div class="time text-right">
+                        <div id="txt">Time</div>
+                        <h5 id="today">Day, Date</h5>
+                    </div>
+                    <div class="card weather">
+                        <div class="card-body">
+
+                            <div class="card-title">
+                                <h2 id="city-name">City Name</h2>
+                            </div>
+                            <div class="card-subtitle mb-2 text-muted">
+                                <hr>
+                            </div>
+
+                            <div class="current-weather row" id="currentWeather">
+<!-- 
+                                <div class="col-8">
+                                    <div class="weather-type">Cloudy</div>
+                                    <span class="number">30&deg;<span class="unit">F</span></span>
+                                </div>
+                                <div class="col-4">
+                                    <div class="weather-icon-current" width="84" height="84">
+                                    </div>
+                                </div>
+ -->
+                            </div>
+
+                            <div class="forecast row text-center" id="weatherForecastFor5Days">
+<!-- 
+                                <div class="col">
+                                    <span class="day">Today</span>
+                                    <div class="weather-icon-forecast" width="52" height="52">
+                                    </div>
+                                    <div class="high-low">
+                                        <span class="high">30&deg;F</span>
+                                        <span class="low">25&deg;F</span>
+                                    </div>
+                                </div>
+-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <!--
+                                <div class="col">
+                                    <a href="https://reddit.com">
+                                        <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=reddit.com" />
+                                    </a>
+                                </div>
+                                -->
+                                <div class="col">
+                                    <a href="https://github.com">
+                                        <img height="32" width="32" src="assets/GitHub-Mark/SVG/Octicons-mark-github.svg" />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="https://youtube.com">
+                                        <img height="32" width="32" src="assets/YouTube_Logo.svg" />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="https://netflix.com">
+                                        <img height="32" width="32" src="assets/Netflix/Netflix_Logo.svg" />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="https://photos.google.com">
+                                        <img height="32" width="32" src="assets/Google/Photos/Google_Photos_Logo.svg" />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="https://mail.google.com">
+                                        <img height="32" width="32" src="assets/Google/GMail/GMail_Logo.svg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="https://www.atlassian.com/software/jira">
+                                    <img height="32" width="32" src="assets/JIRA/Jira.png" />
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="https://rancher.com/">
+                                    <img height="32" width="32" src="assets/Rancher/Rancher_ThugLife.png" />
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="https://calendar.google.com/calendar/">
+                                    <img height="32" width="32" src="assets/google-product-logos/logo_calendar_64px.png" />
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="https://meet.google.com/">
+                                    <img height="32" width="32" src="assets/google-product-logos/logo_meet_64px.png" />
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="https://jenkins.io/">
+                                    <img height="44" width="32" src="assets/Jenkins/Jenkins.png" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="assets/build/js/jquery.min.js"></script> -->
+    <!-- <script src="assets/build/js/all.min.js"></script> -->
+    <script src="js/index.js"></script>
+</body>
+
+</html>
