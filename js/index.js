@@ -59,11 +59,15 @@ function getCityNameFromZipCode(zipcode) {
 		})
 		.then(function(response) {
 			populateCityNameFromZipCode(response);
-		}).catch((error) => {
+		})
+		.catch((error) => {
 			console.log(error)
 			var myCityNameFromZipCodeObj = 
 			[{
-				"LocalizedName": "Iowa City"
+				"LocalizedName": "City",
+				"AdministrativeArea": {
+					"ID": "State"
+				}
 			}];
 			populateCityNameFromZipCode(myCityNameFromZipCodeObj);
 			alert("Dummy City Name is being displayed!");
@@ -78,7 +82,8 @@ function populateCityNameFromZipCode(response) {
 
 	// var h2 = document.createElement("h2");
 	var h2 = document.getElementById("city-name");
-	h2.innerHTML = response[0].LocalizedName;
+	h2.innerHTML = response[0].LocalizedName + ", " + response[0].AdministrativeArea.ID;
+	console.log(response[0].LocalizedName + ", " + response[0].AdministrativeArea.ID);
 
 	// node1.appendChild(h2);
 
@@ -93,7 +98,7 @@ function populateCityNameFromZipCode(response) {
 	// // node1.appendChild(node2);
 
 	// document.getElementById("city-name").appendChild(node2);
-	console.log(node2);
+	// console.log(node2);
 }
 
 function getCurrentWeatherCondition(zipcode) {
