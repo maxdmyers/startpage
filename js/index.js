@@ -467,3 +467,22 @@ window.onload = function() {
 	startTime();
 	getNews();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+	var checkbox = document.querySelector('input[type="checkbox"]');
+
+	checkbox.addEventListener('change', function () {
+		if (checkbox.checked) {
+			// Dark Mode is ON!
+			console.log('Checked');
+			document.body.style.backgroundColor = 'var(--iseblack)';
+			document.body.style.color = 'var(--isegreen)'; // #212529
+			document.body.style.a.color = 'var(--isegreen)'; // #007bff
+			document.body.style.input.color = 'var(--isegreen)';
+		} else {
+			// Dark Mode is OFF!
+			console.log('Not checked');
+			document.body.style.backgroundColor = 'var(--white)';
+		}
+	});
+});
