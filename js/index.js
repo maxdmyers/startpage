@@ -468,6 +468,16 @@ window.onload = function() {
 	getNews();
 }
 
+function changeColor(tagName, color) {
+	// body...
+	var links = document.getElementsByTagName(tagName);
+	for(var i=0;i<links.length;i++){
+		if(links[i].href) {
+			links[i].style.color = color;  
+		}
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	var checkbox = document.querySelector('input[type="checkbox"]');
 
@@ -475,14 +485,35 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (checkbox.checked) {
 			// Dark Mode is ON!
 			console.log('Checked');
+			var iseGreenColor = 'var(--isegreen)';
+
 			document.body.style.backgroundColor = 'var(--iseblack)';
-			document.body.style.color = 'var(--isegreen)'; // #212529
-			document.body.style.a.color = 'var(--isegreen)'; // #007bff
-			document.body.style.input.color = 'var(--isegreen)';
+			document.body.style.color = iseGreenColor; // #212529
+			// document.body.style.a.color = 'var(--isegreen)'; // #007bff
+			// document.body.style.input.color = 'var(--isegreen)';
+
+			// document.getElementsByClassName('high-low').style.color = iseGreenColor;
+
+			var aTag = 'a';
+			changeColor(aTag, iseGreenColor);
+
+			// var h2Tag = 'h2';
+			// changeColor(h2Tag, iseGreenColor);
+
 		} else {
 			// Dark Mode is OFF!
+			var blackColor = 'rgba(0,0,0)';
 			console.log('Not checked');
 			document.body.style.backgroundColor = 'var(--white)';
+			document.body.style.color = 'rgba(0,0,0,.87)';
+
+			// document.getElementsByClassName('high-low').style.color = '#3c4043';
+
+			var aTag = 'a';
+			changeColor(aTag, blackColor);
+
+			// var h2Tag = 'h2';
+			// changeColor(h2Tag, blackColor);
 		}
 	});
 });
