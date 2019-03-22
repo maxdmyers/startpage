@@ -7808,7 +7808,7 @@ body{
   background-color: #A5D6A7;
 }
 .switch-input:checked + .switch-label:after {
-  background-color: #4CAF50;
+  background-color: var(--isegreen);
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
@@ -7870,7 +7870,7 @@ body{
   background-color: #A5D6A7;
 }
 .switch-input:checked + .switch-label:after {
-  background-color: #4CAF50;
+  background-color: var(--isegreen);
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
