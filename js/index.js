@@ -478,42 +478,46 @@ function changeColor(tagName, color) {
 	}
 }
 
+function changeCSS(cssFile, cssLinkIndex) {
+
+    var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", cssFile);
+
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	var checkbox = document.querySelector('input[type="checkbox"]');
 
 	checkbox.addEventListener('change', function () {
 		if (checkbox.checked) {
 			// Dark Mode is ON!
-			console.log('Checked');
-			var iseGreenColor = 'var(--isegreen)';
+			// console.log('Checked');
+			// var iseGreenColor = 'var(--isegreen)';
 
-			document.body.style.backgroundColor = 'var(--iseblack)';
-			document.body.style.color = iseGreenColor; // #212529
-			// document.body.style.a.color = 'var(--isegreen)'; // #007bff
-			// document.body.style.input.color = 'var(--isegreen)';
+			// document.body.style.backgroundColor = 'var(--iseblack)';
+			// document.body.style.color = iseGreenColor; // #212529
 
-			// document.getElementsByClassName('high-low').style.color = iseGreenColor;
-
-			var aTag = 'a';
-			changeColor(aTag, iseGreenColor);
-
-			// var h2Tag = 'h2';
-			// changeColor(h2Tag, iseGreenColor);
-
+			// var aTag = 'a';
+			// changeColor(aTag, iseGreenColor);
+			var cssFilePath = 'assets/build/css/isecolors.css';
+			changeCSS(cssFilePath,0);
 		} else {
 			// Dark Mode is OFF!
-			var blackColor = 'rgba(0,0,0)';
-			console.log('Not checked');
-			document.body.style.backgroundColor = 'var(--white)';
-			document.body.style.color = 'rgba(0,0,0,.87)';
+			// var blackColor = 'rgba(0,0,0)';
+			// console.log('Not checked');
+			// document.body.style.backgroundColor = 'var(--white)';
+			// document.body.style.color = 'rgba(0,0,0,.87)';
 
-			// document.getElementsByClassName('high-low').style.color = '#3c4043';
 
-			var aTag = 'a';
-			changeColor(aTag, blackColor);
-
-			// var h2Tag = 'h2';
-			// changeColor(h2Tag, blackColor);
+			// var aTag = 'a';
+			// changeColor(aTag, blackColor);
+			var cssFilePath = 'assets/build/css/all.min.css';
+			changeCSS(cssFilePath,0);
 		}
 	});
 });
