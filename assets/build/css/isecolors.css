@@ -1,8 +1,8 @@
 /*! * Bootstrap v4.3.1 (https://getbootstrap.com/) * Copyright 2011-2019 The Bootstrap Authors * Copyright 2011-2019 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 :root{
-    --iseblack:#212121;
-    --ise-primary-black:#263238;
-    --isegreen:#8dc63f;
+    --darkmodeblack:#212121;
+    --darkmode-primary-black:#263238;
+    --darkmodegreen:#8dc63f;
     --blue:#007bff;
     --indigo:#6610f2;
     --purple:#6f42c1;
@@ -50,9 +50,9 @@ body{
     font-size:1rem;
     font-weight:400;
     line-height:1.5;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     text-align:left;
-    background-color:var(--iseblack);
+    background-color:var(--darkmodeblack);
 }
 [tabindex="-1"]:focus{
     outline:0!important
@@ -119,7 +119,7 @@ sup{
 }
 a{
     /*color:#007bff;*/
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     text-decoration:none;
     background-color:transparent
 }
@@ -187,7 +187,7 @@ button,input,optgroup,select,textarea{
     font-family:inherit;
     font-size:inherit;
     line-height:inherit;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
 }
 button,input{
     overflow:visible
@@ -270,7 +270,7 @@ template{
     margin-bottom:.5rem;
     font-weight:500;
     line-height:1.2;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
 }
 .h1,h1{
     font-size:2.5rem
@@ -3412,7 +3412,7 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
     min-width:0;
     word-wrap:break-word;
     /*background-color:#fff;*/
-    background-color:var(--ise-primary-black);
+    background-color:var(--darkmode-primary-black);
     background-clip:border-box;
     border:1px solid rgba(0,0,0,.125);
     border-radius:.25rem
@@ -7638,7 +7638,7 @@ body{
 }
 .time #txt{
     line-height:70px;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
 }
 .card{
     border-radius:8px;
@@ -7654,7 +7654,7 @@ body{
     font-size:16px;
     font-weight:500;
     /*color:#5f6368;*/
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     margin-bottom:0
 }
 .card .card-subtitle hr{
@@ -7663,7 +7663,7 @@ body{
 .current-weather{
     font-size:14px;
     /*color:#3c4043;*/
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     font-weight:500;
     line-height:28px;
     margin-bottom:12px
@@ -7673,7 +7673,7 @@ body{
 }
 .current-weather .number{
     font-size:28px;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
 	/*color:#3c4043;*/
     font-weight:400
 }
@@ -7685,7 +7685,7 @@ body{
 .forecast .day{
     display:block;
     font-size:14px;
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     /*color:#3c4043;*/
     font-weight:500
 }
@@ -7697,7 +7697,7 @@ body{
     font-size:12px;
     text-align:center;
     /*color:#3c4043;*/
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     line-height:18px
 }
 .high-low .high{
@@ -7708,7 +7708,7 @@ body{
 }
 .searchbox{
     /*background:#fff;*/
-    background:var(--ise-primary-black);
+    background:var(--darkmode-primary-black);
     display:flex;
     border:1px solid #dfe1e5;
     box-shadow:none;
@@ -7765,7 +7765,7 @@ body{
 .headlines .meta{
     font-size:12px;
     /*color:inherit;*/
-    color:var(--isegreen);
+    color:var(--darkmodegreen);
     opacity:.7
 }
 /*THIS IS AN ADDITION TO THE CODE FOR A TOGGLE SWITCH*/
@@ -7773,7 +7773,7 @@ body{
   display: none;
 }
 .switch-label {
-    color: var(--isegreen);
+    color: var(--darkmodegreen);
     position: relative;
     display: inline-block;
     min-width: 112px;
@@ -7820,7 +7820,7 @@ body{
     background-color: #A5D6A7;
 }
 .switch-input:checked + .switch-label:after {
-    background-color: var(--isegreen);
+    background-color: var(--darkmodegreen);
     -ms-transform: translate(80%, -50%);
     -webkit-transform: translate(80%, -50%);
     transform: translate(80%, -50%);
