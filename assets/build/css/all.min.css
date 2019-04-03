@@ -1,8 +1,8 @@
 /*! * Bootstrap v4.3.1 (https://getbootstrap.com/) * Copyright 2011-2019 The Bootstrap Authors * Copyright 2011-2019 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 :root{
-    --iseblack:#212121;
-    --ise-primary-black:#263238;
-    --isegreen:#8dc63f;
+    --darkmodeblack:#212121;
+    --darkmode-primary-black:#263238;
+    --darkmodegreen:#8dc63f;
     --blue:#007bff;
     --indigo:#6610f2;
     --purple:#6f42c1;
@@ -51,10 +51,10 @@ body{
     font-weight:400;
     line-height:1.5;
     color:#212529;
-    /*color:var(--isegreen);*/
+    /*color:var(--darkmodegreen);*/
     text-align:left;
     background-color:var(--white); 
-    /*background-color:var(--iseblack);*/
+    /*background-color:var(--darkmodeblack);*/
 }
 [tabindex="-1"]:focus{
     outline:0!important
@@ -7812,7 +7812,7 @@ body{
   background-color: #A5D6A7;
 }
 .switch-input:checked + .switch-label:after {
-  background-color: var(--isegreen);
+  background-color: var(--darkmodegreen);
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
@@ -7874,7 +7874,7 @@ body{
   background-color: #A5D6A7;
 }
 .switch-input:checked + .switch-label:after {
-  background-color: var(--isegreen);
+  background-color: var(--darkmodegreen);
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
