@@ -12,6 +12,9 @@
 // 	get5DaysWeatherForecast(zipcode);
 // }
 
+var accuweatherAPIKey = '<API_KEY>';
+var newsapiOrgKey = '<API_KEY>';
+
 function setCookie(zipcode, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -51,7 +54,7 @@ function checkCookie() {
 
 function getCityNameFromZipCode(zipcode) {
 	// var url = 'http://ziptasticapi.com/' + zipcode;
-	var url = 'http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=' + '<API_KEY>' + '=' + zipcode;
+	var url = 'http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=' + accuweatherAPIKey + '=' + zipcode;
 	var req = new Request(url);
 	fetch(req)
 		.then(function(response) {
@@ -102,7 +105,7 @@ function populateCityNameFromZipCode(response) {
 }
 
 function getCurrentWeatherCondition(zipcode) {
-	var url = 'http://dataservice.accuweather.com/currentconditions/v1/' + zipcode + '?apikey=' + '<API_KEY>';
+	var url = 'http://dataservice.accuweather.com/currentconditions/v1/' + zipcode + '?apikey=' + accuweatherAPIKey;
 	var req = new Request(url);
 	fetch(req)
 		.then(function(response) {
@@ -162,7 +165,7 @@ function populateCurrentWeatherCondition(response) {
 }
 
 function get5DaysWeatherForecast(zipcode) {
-	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=' + '<API_KEY>';
+	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=' + accuweatherAPIKey;
 	var req = new Request(url);
 	fetch(req)
 		.then(function(response) {
@@ -295,7 +298,7 @@ function populate5DaysWeatherForecast(response) {
 function getNews() {
 	var url = 'https://newsapi.org/v2/top-headlines?' +
 		'country=us&' +
-		'apiKey=' + '<API_KEY>';
+		'apiKey=' + newsapiOrgKey;
 	var req = new Request(url);
 	fetch(req)
 	.then(function(response) {
