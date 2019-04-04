@@ -26,12 +26,15 @@ Setup
 Todo
 ---
 - Allow setting of bookmarks in json config
-- Improve favicon retrieval
-- Get weather from openweathermap.org api or similar
-- Dynamically set days and weather icons
-- Pull zip code from json config for weather
-- Get Google News from https://newsapi.org/s/google-news-api
+- Use javascript to fetch favicons and cache them
+- ~~Get weather from openweathermap.org api or similar~~
+- ~~Dynamically set days and weather icons~~
+- ~~Pull zip code from json config for weather~~
+- ~~Get Google News from https://newsapi.org/s/google-news-api~~
 - Experiment with vertical cards with images for news headlines
 - Consider adding autocomplete to search bar
 - Improve responsive styling (desktop only for now)
-- Improve code quality and legibility
+- ~~Improve code quality and legibility~~
+- Add options menu
+- Add Dark Mode option
+- Add option to add bookmark, saving to config file
