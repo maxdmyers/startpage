@@ -1,7 +1,7 @@
-var zipCodeAPIKey 		= '<API_KEY>';
-var darkSkyAPIKey		= '<API_KEY>';
-var newsAPIKey			= '<API_KEY>';
-var corsUrl 			= 'https://cors-anywhere.herokuapp.com/';
+var corsUrl 		= 'https://cors-anywhere.herokuapp.com/';
+var zipCodeAPIKey 	= '<API_KEY>'; // https://www.zipcodeapi.com/
+var darkSkyAPIKey	= '<API_KEY>'; // https://darksky.net/dev
+var newsapiOrgKey	= '<API_KEY>'; // https://newsapi.org/
 
 function setCookie(zipcode, cvalue, exdays) {
 	var d = new Date();
@@ -92,6 +92,42 @@ function getMonthOfTheYear(today) {
 	return mon;
 }
 
+function timeSince(previous) {
+
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+    var current = new Date();
+
+    var elapsed = current - previous;
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds ago';   
+    }
+
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+    }
+
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+    }
+
+    else if (elapsed < msPerMonth) {
+        return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+    }
+
+    else if (elapsed < msPerYear) {
+        return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+    }
+
+    else {
+        return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+    }
+}
+
 function checkDate() {
     var today = new Date();
     var h = today.getHours();
@@ -149,7 +185,7 @@ function getCurrentWeatherCondition(lat, lng) {
 			return response.json();
 		})
 		.then(function(response) {
-			console.log(response);
+			// console.log(response);
 			populateCurrentWeatherCondition(response.currently);
 			populate5DaysWeatherForecast(response.daily);
 			// console.log(response);
@@ -334,8 +370,99 @@ function populate5DaysWeatherForecast(response) {
 	}
 }
 
+function getNews() {
+	var url = 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=' + newsapiOrgKey;
+	var req = new Request(url);
+	fetch(req)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(response) {
+		// console.log(JSON.stringify(response));
+		populateNews(response);
+	}).catch(function(error) {
+		console.log(error)
+        var myNewsApiObj = {   
+            "articles": [
+                {
+                    "source": {
+                        "name": "CNBC"
+                    },
+                    "title": "Fed holds line on rates, says no more hikes ahead this year - CNBC",
+                    "url": "https://news.google.com/articles/",
+                    "publishedAt": "2019-03-20T18:00:08Z"
+                },{
+                    "source": {
+                        "name": "Ars Technica"
+                    },
+                    "title": "“Energizing Times”: Microsoft to “go big” at E3 in response to Google Stadia - Ars Technica",
+                    "url": "https://arstechnica.com/gaming/2019/03/in-wake-of-googles-stadia-reveal-microsofts-phil-spencer-promises-to-go-big-at-e3/",
+                    "publishedAt": "2019-03-20T17:24:00Z"
+                },
+                {
+                    "source": {
+                        "name": "Fox News"
+                    },
+                    "title": "Clarence Thomas makes rare intervention during Supreme Court arguments - Fox News",
+                    "url": "https://www.foxnews.com/politics/clarence-thomas-makes-rare-intervention-during-supreme-court-arguments",
+                    "publishedAt": "2019-03-20T17:21:01Z"
+                },{
+                    "source": {
+                        "name": "The New York Times"
+                    },
+                    "title": "Confusion, Then Prayer, in Cockpit of Doomed Lion Air Jet - The New York Times",
+                    "url": "https://www.nytimes.com/2019/03/20/world/asia/lion-air-crash-boeing.html",
+                    "publishedAt": "2019-03-20T17:10:29Z"
+                }
+            ]
+        };
+        populateNews(myNewsApiObj);
+	});
+}
+
+function populateNews(response) {
+	for (var i = 0; i < 4; i++) {
+
+		var node = document.createElement("li");
+		node.setAttribute("class", "card px-4 py-3 mb-2");
+
+		var a = document.createElement("a");
+		a.setAttribute("href", response.articles[i].url);
+		var heading = document.createElement("h5");
+		var s = response.articles[i].title
+		// s = s.substring(0, s.indexOf('-'));
+		var textForHeading = document.createTextNode(s);
+		heading.appendChild(textForHeading)
+		a.appendChild(heading)
+		node.appendChild(a);
+
+		var div = document.createElement("div");
+		div.setAttribute("class", "meta");
+		var span = document.createElement("span");
+		span.setAttribute("class", "site");
+		span.innerHTML = response.articles[i].source.name;
+		var time = document.createElement("time");
+		var t = new Date(response.articles[i].publishedAt);
+		// var hours = t.getHours();
+		// var minutes = t.getMinutes();
+		// var date = t.getDate();
+		// var day = getDayOfTheWeek(t);
+		// var month = getMonthOfTheYear(t);
+		// time.innerHTML = day + " " + month + " " + date + " Published at " + hours + ":" + minutes;
+		time.innerHTML = timeSince(t);
+
+		div.appendChild(span);
+		div.appendChild(time);
+
+		node.appendChild(div);
+
+		document.getElementById("topHeadlines").appendChild(node);
+	}
+}
+
 window.onload = function() {
 	checkCookie();
 	checkDate();
 	startTime();
+	getNews();
 }
