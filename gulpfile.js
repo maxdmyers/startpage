@@ -58,7 +58,7 @@ gulp.task('fonts', gulp.series( function() {
 
 gulp.task('scripts', gulp.series( function() {
     return gulp.src([
-            './node_modules/bootstrap/dist/js/bootstrap.js',
+            // './node_modules/bootstrap/dist/js/bootstrap.js',
             paths.scripts.src
         ])
         .pipe( sourcemaps.init() )
