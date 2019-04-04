@@ -3,6 +3,10 @@ A start page based on Bootstrap 4 and Material Design 2 (specifically the Google
 
 ![alt text](https://github.com/maxdmyers/startpage/raw/api-improvements/screenshot.png "Start Page")
 
+Contributors
+---
+[ars75](https://github.com/ars75)
+
 Dependencies
 ---
 - [Bootstrap](http://getbootstrap.com)
