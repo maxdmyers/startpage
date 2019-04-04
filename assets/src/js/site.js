@@ -1,4 +1,6 @@
-var accuweatherAPIKey 	= '<API_KEY>';
+var zipCodeAPIKey 		= '<API_KEY>';
+var darkSkyAPIKey		= '<API_KEY>';
+var newsAPIKey			= '<API_KEY>';
 var corsUrl 			= 'https://cors-anywhere.herokuapp.com/';
 
 function setCookie(zipcode, cvalue, exdays) {
@@ -30,8 +32,8 @@ function checkCookie() {
 	var zipcode = getCookie("zipcode");
 
 	if (zipcode != "") {
-		alert("Zipcode : " + zipcode);
-		get5DaysWeatherForecast(zipcode);
+		console.log("Zipcode: " + zipcode);
+		// get5DaysWeatherForecast(zipcode);
 	} else {
 		zipcode = prompt("Please enter your Zipcode:", "");
 		if (zipcode != "" && zipcode != null) {
@@ -59,34 +61,42 @@ function checkTime(i) {
     return (i < 10) ? i = "0" + i : i;  // add zero in front of numbers < 10
 }
 
+function getDayOfTheWeek(today) {
+	var weekday = new Array(7);
+	weekday[0] = "Sunday";
+	weekday[1] = "Monday";
+	weekday[2] = "Tuesday";
+	weekday[3] = "Wednesday";
+	weekday[4] = "Thursday";
+	weekday[5] = "Friday";
+	weekday[6] = "Saturday";
+	var day = weekday[today.getDay()];
+	return day;
+}
+
+function getMonthOfTheYear(today) {
+	var month = new Array();
+	month[0] = "January";
+	month[1] = "February";
+	month[2] = "March";
+	month[3] = "April";
+	month[4] = "May";
+	month[5] = "June";
+	month[6] = "July";
+	month[7] = "August";
+	month[8] = "September";
+	month[9] = "October";
+	month[10] = "November";
+	month[11] = "December";
+	var mon = month[today.getMonth()];
+	return mon;
+}
+
 function checkDate() {
     var today = new Date();
     var h = today.getHours();
-
-    var weekday = new Array(7);
-    weekday[0] =  "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-    var day = weekday[today.getDay()];
-
-    var month = new Array();
-    month[0] = "January";
-    month[1] = "February";
-    month[2] = "March";
-    month[3] = "April";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "August";
-    month[8] = "September";
-    month[9] = "October";
-    month[10] = "November";
-    month[11] = "December";
-    var mon = month[today.getMonth()];
+    var day = getDayOfTheWeek(today);
+	var mon = getMonthOfTheYear(today);
 
     var timeOfDayArray = [
         [0, 4, "Good night."], 
@@ -106,7 +116,7 @@ function checkDate() {
 }
 
 function getCityNameFromZipCode(zipcode) {
-	var url = corsUrl + 'http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=' + accuweatherAPIKey + '&q=' + zipcode;
+	var url = corsUrl + 'https://www.zipcodeapi.com/rest/' + zipCodeAPIKey + '/info.json/' + zipcode + '/degrees';
 	var req = new Request(url);
 
 	fetch(req)
@@ -114,7 +124,9 @@ function getCityNameFromZipCode(zipcode) {
 			return response.json();
 		})
 		.then(function(response) {
+			// console.log(response);
 			populateCityNameFromZipCode(response);
+			getCurrentWeatherCondition(response.lat, response.lng);
 		})
 		.catch(function(error) {
 			console.log(error)
@@ -122,9 +134,204 @@ function getCityNameFromZipCode(zipcode) {
 }
 
 function populateCityNameFromZipCode(response) {
-	console.log("City: " + response[0].LocalizedName);
+	var city = response.city;
+	console.log("City: " + city);
 	var h2 = document.getElementById("cityName");
-	h2.innerHTML = response[0].LocalizedName;
+	h2.innerHTML = city;
+}
+
+function getCurrentWeatherCondition(lat, lng) {
+	var url = corsUrl + 'https://api.darksky.net/forecast/' + darkSkyAPIKey + '/' + lat + ',' + lng;
+
+	var req = new Request(url);
+	fetch(req)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(response) {
+			console.log(response);
+			populateCurrentWeatherCondition(response.currently);
+			populate5DaysWeatherForecast(response.daily);
+			// console.log(response);
+		}).catch(function(error) {
+			console.log(error)
+			var myCurrentWeatherConditionObj = 
+			[{
+				
+					"WeatherText": "Cloudy",
+					"Temperature": {
+						"Imperial": {
+							"Value": 30
+						}
+					}
+				
+			}];
+			// Dummy Data if the API Doesnt work
+			var my5DaysWeatherForecastObj = {
+				"DailyForecasts": [
+					{
+						"Date": "2018/11/24",
+						"Temperature": {
+							"Maximum": {
+								"Value": 50
+							},
+							"Minimum": {
+								"Value": 25
+							}
+						}
+					},
+					{
+						"Date": "2018/11/25",
+						"Temperature": {
+							"Maximum": {
+								"Value": 50
+							},
+							"Minimum": {
+								"Value": 25
+							}
+						}
+					},
+					{
+						"Date": "2018/11/26",
+						"Temperature": {
+							"Maximum": {
+								"Value": 50
+							},
+							"Minimum": {
+								"Value": 25
+							}
+						}
+					},
+					{
+						"Date": "2018/11/27",
+						"Temperature": {
+							"Maximum": {
+								"Value": 50
+							},
+							"Minimum": {
+								"Value": 25
+							}
+						}
+					},
+					{
+						"Date": "2018/11/28",
+						"Temperature": {
+							"Maximum": {
+								"Value": 50
+							},
+							"Minimum": {
+								"Value": 25
+							}
+						}
+					}
+				]
+			};
+			populateCurrentWeatherCondition(myCurrentWeatherConditionObj);
+			populate5DaysWeatherForecast(my5DaysWeatherForecastObj);
+		});
+	// get5DaysWeatherForecast(zipcode);
+}
+
+function populateCurrentWeatherCondition(response) {
+	console.log("Weather summary: " + response.summary);
+	var weatherText = response.summary;
+	var temperatureValue = Math.round(response.temperature);
+	var node = document.createElement("div");
+	node.setAttribute("class", "col-8");
+
+	var innerDiv1 = document.createElement("div");
+	innerDiv1.setAttribute("class", "weather-type");
+	innerDiv1.innerHTML = weatherText;
+	node.appendChild(innerDiv1);
+
+	var span = document.createElement("span");
+	span.setAttribute("class", "number");
+	span.innerHTML = temperatureValue + "&deg;<span class=\"unit\">F</span>"
+	node.appendChild(span);
+
+	document.getElementById("currentWeather").appendChild(node);
+
+	var node1 = document.createElement("div");
+	node1.setAttribute("class", "col-4");
+
+	var innerDiv2 = document.createElement("div");
+	innerDiv2.setAttribute("class", "weather-icon-current");
+	innerDiv2.setAttribute("width", "84");
+	innerDiv2.setAttribute("height", "84");
+	node1.appendChild(innerDiv2);
+
+	var iconImg = document.createElement("img");
+	iconImg.setAttribute("src", "assets/icons/" + response.icon + ".svg");
+	iconImg.setAttribute("title", response.summary);
+	innerDiv2.appendChild(iconImg);
+
+	document.getElementById("currentWeather").appendChild(node1);
+}
+
+function populate5DaysWeatherForecast(response) {
+	for (var i = 0; i < 5; i++) {
+		var Maximum = Math.round(response.data[i].temperatureHigh);
+		var Minimum = Math.round(response.data[i].temperatureLow);
+		var weatherDate = response.data[i].time;
+
+		// console.log("Maximum: " + Maximum);
+		// console.log("Minimum: " + Minimum);
+		// console.log("Weather Date: " + weatherDate);
+
+		var node = document.createElement("div");
+		node.setAttribute("class", "col");
+
+		var outerSpan = document.createElement("span");
+		outerSpan.setAttribute("class", "day");
+		var date = new Date(weatherDate * 1000);
+
+		var getTodaysDate = new Date();
+		var dayOfTheWeek = getDayOfTheWeek(date);
+		var res = "";
+		
+		if (date.getDate() === getTodaysDate.getDate()) {
+			res = "Today";
+		} else {
+			res = dayOfTheWeek.substring(0, 3);
+		}
+		outerSpan.innerHTML = res;
+		node.appendChild(outerSpan);
+
+		var innerDiv1 = document.createElement("div");
+		innerDiv1.setAttribute("class", "weather-icon-forecast");
+		innerDiv1.setAttribute("width", "39");
+		innerDiv1.setAttribute("height", "39");
+		node.appendChild(innerDiv1);
+
+		var iconImg = document.createElement("img");
+		iconImg.setAttribute("src", "assets/icons/" + response.data[i].icon + ".svg");
+		iconImg.setAttribute("width", "39");
+		iconImg.setAttribute("height", "39");
+		iconImg.setAttribute("title", response.data[i].summary);
+		innerDiv1.appendChild(iconImg);
+
+
+		var innerDiv2 = document.createElement("div");
+		innerDiv2.setAttribute("class", "high-low");
+
+		var spanMax = document.createElement("span");
+		spanMax.setAttribute("class", "high")
+		spanMax.innerHTML = Maximum + "&deg;F";
+		innerDiv2.appendChild(spanMax);
+
+		var breakLine = document.createElement("br");
+		innerDiv2.appendChild(breakLine);
+
+		var spanMin = document.createElement("span");
+		spanMin.setAttribute("class", "low")
+		spanMin.innerHTML = Minimum + "&deg;F";
+		innerDiv2.appendChild(spanMin);
+
+		node.appendChild(innerDiv2);
+		// console.log(node);
+
+		document.getElementById("weatherForecast").appendChild(node);
+	}
 }
 
 window.onload = function() {
