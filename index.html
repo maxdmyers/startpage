@@ -71,7 +71,7 @@
                         <div class="card weather">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h2>Grand Rapids</h2>
+                                    <h2 id="cityName">Grand Rapids</h2>
                                 </div>
                                 <div class="card-subtitle mb-2 text-muted"><hr></div>
                                 <!-- Current Weather -->
@@ -181,76 +181,6 @@
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- <script src="assets/build/js/jquery.min.js"></script> -->
-        <!-- <script src="assets/build/js/all.min.js"></script> -->
-        <script>
-            function startTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                var amPM = (h > 11) ? "pm" : "am";
-
-                h = today.getHours() % 12 || 12
-                m = checkTime(m);
-
-                document.getElementById('txt').innerHTML = h + ":" + m;
-                var t = setTimeout(startTime, 500);
-            }
-
-            function checkTime(i) {
-                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-                return i;
-            }
-
-            function checkDate() {
-                var today = new Date();
-                var h = today.getHours();
-
-                var weekday = new Array(7);
-                weekday[0] =  "Sunday";
-                weekday[1] = "Monday";
-                weekday[2] = "Tuesday";
-                weekday[3] = "Wednesday";
-                weekday[4] = "Thursday";
-                weekday[5] = "Friday";
-                weekday[6] = "Saturday";
-                var day = weekday[today.getDay()];
-
-                var month = new Array();
-                month[0] = "January";
-                month[1] = "February";
-                month[2] = "March";
-                month[3] = "April";
-                month[4] = "May";
-                month[5] = "June";
-                month[6] = "July";
-                month[7] = "August";
-                month[8] = "September";
-                month[9] = "October";
-                month[10] = "November";
-                month[11] = "December";
-                var mon = month[today.getMonth()];
-
-                var timeOfDayArray = [
-                    [0, 4, "Good night."], 
-                    [5, 11, "Good morning."],
-                    [12, 17, "Good afternoon."],
-                    [18, 22, "Good evening."],
-                    [23, 24, "Good night."]
-                ];
-
-                for(var i = 0; i < timeOfDayArray.length; i++){
-                    if(h >= timeOfDayArray[i][0] && h <= timeOfDayArray[i][1]){
-                        document.getElementById('salutation').innerHTML = timeOfDayArray[i][2];
-                    }
-                }
-
-                document.getElementById('today').innerHTML = day + ', ' + mon + ' ' + today.getDate();
-            }
-
-            window.onload = function() {
-                checkDate();
-                startTime();
-            }
-        </script>
+        <script src="assets/build/js/all.min.js"></script>
     </body>
 </html>
