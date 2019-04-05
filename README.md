@@ -25,6 +25,7 @@ Setup
    `npm install`
 
 - Edit `gulpfile.js` and set `devUrl` to your local URL of choice
+- Edit `assets/src/js/site.js` and replace bookmarks with your own
 - Run `gulp`
 
 Todo
