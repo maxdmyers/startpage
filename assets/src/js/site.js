@@ -2,6 +2,32 @@ var corsUrl 		= 'https://cors-anywhere.herokuapp.com/';
 var zipCodeAPIKey 	= '<API_KEY>'; // https://www.zipcodeapi.com/
 var darkSkyAPIKey	= '<API_KEY>'; // https://darksky.net/dev
 var newsapiOrgKey	= '<API_KEY>'; // https://newsapi.org/
+var bookmarks		= [
+	{
+		'name': 'Reddit',
+		'url': 'https://reddit.com'
+	},
+	{
+		'name': 'Google',
+		'url': 'https://google.com'
+	},
+	{
+		'name': 'GitHub',
+		'url': 'https://github.com'
+	},
+	{
+		'name': 'YouTube',
+		'url': 'https://youtube.com'
+	},
+	{
+		'name': 'Google Photos',
+		'url': 'https://photos.google.com'
+	},
+	{
+		'name': 'Google News',
+		'url': 'https://news.google.com'
+	}
+];
 
 function setCookie(zipcode, cvalue, exdays) {
 	var d = new Date();
@@ -178,8 +204,8 @@ function populateCityNameFromZipCode(response) {
 
 function getCurrentWeatherCondition(lat, lng) {
 	var url = corsUrl + 'https://api.darksky.net/forecast/' + darkSkyAPIKey + '/' + lat + ',' + lng;
-
 	var req = new Request(url);
+
 	fetch(req)
 		.then(function(response) {
 			return response.json();
@@ -443,12 +469,6 @@ function populateNews(response) {
 		span.innerHTML = response.articles[i].source.name;
 		var time = document.createElement("time");
 		var t = new Date(response.articles[i].publishedAt);
-		// var hours = t.getHours();
-		// var minutes = t.getMinutes();
-		// var date = t.getDate();
-		// var day = getDayOfTheWeek(t);
-		// var month = getMonthOfTheYear(t);
-		// time.innerHTML = day + " " + month + " " + date + " Published at " + hours + ":" + minutes;
 		time.innerHTML = timeSince(t);
 
 		div.appendChild(span);
@@ -460,9 +480,38 @@ function populateNews(response) {
 	}
 }
 
+function populateFavicons() {
+	var url = 'https://api.faviconkit.com/';
+
+	for (var i = 0; i < bookmarks.length; i++) {
+		var imgSrc = bookmarks[i].url;
+		imgSrc = imgSrc.replace(/^(https?:|)\/\//, '');
+		imgSrc = url + imgSrc + "/64";
+
+		var node = document.createElement("div");
+		node.setAttribute("class", "col");
+
+		var a = document.createElement("a");
+		a.setAttribute("href", bookmarks[i].url);
+
+		var iconImg = document.createElement("img");
+		iconImg.setAttribute("src", imgSrc);
+		iconImg.setAttribute("title", bookmarks[i].name);
+		iconImg.setAttribute("width", "32");
+		iconImg.setAttribute("height", "32");
+		iconImg.setAttribute("class", "mb-3");
+		a.appendChild(iconImg);
+
+		node.appendChild(a);
+
+		document.getElementById("bookmarks").appendChild(node);
+	}
+}
+
 window.onload = function() {
 	checkCookie();
 	checkDate();
 	startTime();
 	getNews();
+	populateFavicons();
 }
