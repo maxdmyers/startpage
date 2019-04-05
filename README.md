@@ -29,8 +29,8 @@ Setup
 
 Todo
 ---
-- Allow setting of bookmarks in json config
-- Use javascript to fetch favicons and cache them
+- ~~Allow setting of bookmarks in json config~~
+- ~~Use javascript to fetch favicons and cache them~~
 - ~~Get weather from openweathermap.org api or similar~~
 - ~~Dynamically set days and weather icons~~
 - ~~Pull zip code from json config for weather~~
