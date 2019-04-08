@@ -93,6 +93,10 @@ body {
 			margin-left: 2px;
 	    }
     }
+
+    .weather-icon-current img {
+    	max-width: 100%;
+    }
 }
 
 .forecast {
@@ -186,6 +190,7 @@ body {
 			}
 		}
 	}
+
 	time {
 		&:before {
 			content: '\0000a0\002022\0000a0';
@@ -198,4 +203,18 @@ body {
 	    color: inherit;
 	    opacity: .7;
 	}
+
+	.read-more a {
+		color: #4285f4;
+		font-size: 14px;
+
+		img {
+			margin-right: 2px;
+		}
+	}
+}
+
+.bookmarks {
+	border: none;
+	background-color: #f8f9fa;
 }
