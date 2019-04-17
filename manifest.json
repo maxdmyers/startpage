@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "Startpage",
+	"description": "A start page based on Bootstrap 4 and Material Design 2 (specifically the Google Material Theme).",
+	"version": "1",
+	"author": "Max Myers",
+ 	"browser_action": {
+   		"default_title": "New Tab"
+ 	},
+	"chrome_url_overrides" : {
+  		"newtab": "index.html"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	},
+ 	"permissions": [
+ 		"activeTab",
+ 		"storage"
+ 	]
+}

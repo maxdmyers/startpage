@@ -8,8 +8,8 @@ var bookmarks		= [
 		'url': 'https://reddit.com'
 	},
 	{
-		'name': 'Google',
-		'url': 'https://google.com'
+		'name': 'Google News',
+		'url': 'https://news.google.com'
 	},
 	{
 		'name': 'GitHub',
@@ -20,12 +20,8 @@ var bookmarks		= [
 		'url': 'https://youtube.com'
 	},
 	{
-		'name': 'Google Photos',
-		'url': 'https://photos.google.com'
-	},
-	{
-		'name': 'Google News',
-		'url': 'https://news.google.com'
+		'name': 'Feedly',
+		'url': 'https://feedly.com'
 	}
 ];
 

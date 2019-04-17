@@ -57,10 +57,7 @@ gulp.task('fonts', gulp.series( function() {
 }));
 
 gulp.task('scripts', gulp.series( function() {
-    return gulp.src([
-            // './node_modules/bootstrap/dist/js/bootstrap.js',
-            paths.scripts.src
-        ])
+    return gulp.src(paths.scripts.src)
         .pipe( sourcemaps.init() )
         .pipe( concat('all.min.js') )
         .pipe( sourcemaps.write() )
@@ -70,7 +67,7 @@ gulp.task('scripts', gulp.series( function() {
         .pipe( browserSync.stream() );
 }));
 
-gulp.task('jquery', gulp.series(function() {
+gulp.task('jquery', gulp.series( function() {
     return gulp.src( './node_modules/jquery/dist/jquery.js' )
         .pipe( sourcemaps.init() )
         .pipe( concat('jquery.min.js') )
@@ -78,6 +75,20 @@ gulp.task('jquery', gulp.series(function() {
         .pipe( uglify() )
         .pipe( gulp.dest( paths.scripts.dest ) )
         .pipe( notify( 'jquery build completed' ) )
+        .pipe( browserSync.stream() );
+}));
+
+gulp.task('bootstrap', gulp.series( function() {
+    return gulp.src([ 
+            './node_modules/bootstrap/dist/js/bootstrap.js',
+            './node_modules/popper.js/dist/popper.min.js'
+        ])
+        .pipe( sourcemaps.init() )
+        .pipe( concat('bootstrap.min.js') )
+        .pipe( sourcemaps.write() )
+        .pipe( uglify() )
+        .pipe( gulp.dest( paths.scripts.dest ) )
+        .pipe( notify( 'Bootstrap build completed' ) )
         .pipe( browserSync.stream() );
 }));
 
@@ -104,5 +115,6 @@ gulp.task('watch', gulp.series( function() {
     gulp.watch( paths.fonts.src, gulp.series('fonts') );
     gulp.watch( '*.twig' ).on( 'change', browserSync.reload );
 }));
+
 
 gulp.task( 'default', gulp.series( 'scripts', 'styles', 'fonts', 'watch' ) );

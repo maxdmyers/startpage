@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Startpage Options</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">=
+<link rel="stylesheet" href="assets/build/css/all.min.css">
+<script src="assets/build/js/jquery.min.js"></script>
+<!-- <script src="assets/build/js/bootstrap.min.js"></script> -->
+<script type="text/javascript">
+    /*
+    <td>
+        <a class="add" title="Save"><i class="material-icons">check bold</i></a>
+        <a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+        <a class="delete" title="Delete"><i class="material-icons">close circle outline</i></a>
+    </td>
+    */
+    function addRow() {
+        var btn = document.getElementById("add");
+        btn.setAttribute("disabled", "disabled");
+
+        var node = document.getElementById("favorites");
+        var tr = document.createElement("tr");
+
+        var tdName = document.createElement("td");
+        var nameInput = document.createElement("input");
+        nameInput.setAttribute("class", "form-control");
+        nameInput.setAttribute("name", "name");
+        nameInput.setAttribute("id", "name");
+        nameInput.setAttribute("type", "text");
+        tdName.appendChild(nameInput);
+        tr.appendChild(tdName);
+
+        var tdUrl = document.createElement("td");
+        var urlInput = document.createElement("input");
+        urlInput.setAttribute("class", "form-control");
+        urlInput.setAttribute("name", "name");
+        urlInput.setAttribute("id", "name");
+        urlInput.setAttribute("type", "text");
+        tdUrl.appendChild(urlInput);
+        tr.appendChild(tdUrl);
+
+        var tdActions = document.createElement("td");
+        var addAnchor = document.createElement("a");
+        addAnchor.setAttribute("class", "add");
+        addAnchor.setAttribute("title", "Save");
+        var addIcon = document.createElement("i");
+        addIcon.setAttribute("class", "material-icons");
+        addIcon.innerHTML = "check bold";
+        addAnchor.appendChild(addIcon);
+
+        var editAnchor = document.createElement("a");
+        editAnchor.setAttribute("class", "edit");
+        editAnchor.setAttribute("title", "Edit");
+        var editIcon = document.createElement("i");
+        editIcon.setAttribute("class", "material-icons");
+        editIcon.innerHTML = "edit";
+        editAnchor.appendChild(editIcon);
+
+        var deleteAnchor = document.createElement("a");
+        deleteAnchor.setAttribute("class", "delete");
+        deleteAnchor.setAttribute("title", "Delete");
+        var deleteIcon = document.createElement("i");
+        deleteIcon.setAttribute("class", "material-icons");
+        deleteIcon.innerHTML = "close circle outline";
+        deleteAnchor.appendChild(deleteIcon);
+
+        tdActions.appendChild(addAnchor);
+        tdActions.appendChild(editAnchor);
+        tdActions.appendChild(deleteAnchor);
+        tr.appendChild(tdActions);
+        node.appendChild(tr);
+    }
+
+    function deleteRow(event) {
+        console.log(event.target.parentNode);
+    }
+
+
+    window.onload = function() {
+        document.getElementById("add").addEventListener("click", addRow, false);
+        document.getElementsByClassName("delete").addEventListener("click", deleteRow, false);
+    }
+
+jQuery(document).ready(function($){
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+    // $(".add-new").click(function(){
+    //     $(this).attr("disabled", "disabled");
+    //     var index = $("table tbody tr:last-child").index();
+    //     var row = '<tr>' +
+    //         '<td><input type="text" class="form-control" name="name" id="name"></td>' +
+    //         '<td><input type="text" class="form-control" name="url" id="url"></td>' +
+    //         '<td>' + actions + '</td>' +
+    //     '</tr>';
+    //     $("table").append(row);     
+    //     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+    // });
+    // Add row on add button click
+    $(document).on("click", ".add", function(){
+        var empty = false;
+        var input = $(this).parents("tr").find('input[type="text"]');
+        input.each(function(){
+            if(!$(this).val()){
+                $(this).addClass("error");
+                empty = true;
+            } else{
+                $(this).removeClass("error");
+            }
+        });
+        $(this).parents("tr").find(".error").first().focus();
+        if(!empty){
+            input.each(function(){
+                $(this).parent("td").html($(this).val());
+            });         
+            $(this).parents("tr").find(".add, .edit").toggle();
+            $(".add-new").removeAttr("disabled");
+        }       
+    });
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function(){        
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        });     
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").attr("disabled", "disabled");
+    });
+    // Delete row on delete button click
+    // $(document).on("click", ".delete", function(){
+    //     $(this).parents("tr").remove();
+    //     $(".add-new").removeAttr("disabled");
+    // });
+});
+</script>
+</head>
+<body class="options">
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Favorite Sites</b></h2></div>
+                </div>
+            </div>
+            <table class="table table-bordered" id="favorites">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>URL</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google News</td>
+                        <td>https://news.google.com</td>
+                        <td>
+                            <a class="add" title="Save"><i class="material-icons">check bold</i></a>
+                            <a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+                            <a class="delete" title="Delete"><i class="material-icons">close circle outline</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Reddit</td>
+                        <td>https://reddit.com</td>
+                        <td>
+                            <a class="add" title="Save"><i class="material-icons">check bold</i></a>
+                            <a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+                            <a class="delete" title="Delete"><i class="material-icons">close circle outline</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GitHub</td>
+                        <td>https://github.com</td>
+                        <td>
+                            <a class="add" title="Save"><i class="material-icons">check bold</i></a>
+                            <a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+                            <a class="delete" title="Delete"><i class="material-icons">close circle outline</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>YouTube</td>
+                        <td>https://youtube.com</td>
+                        <td>
+                            <a class="add" title="Save"><i class="material-icons">check bold</i></a>
+                            <a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+                            <a class="delete" title="Delete"><i class="material-icons">close circle outline</i></a>
+                        </td>
+                    </tr> 
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-info add-new" id="add"><i class="material-icons" width="24" height="24">add</i></button>
+        </div>
+    </div>     
+</body>
+</html>                            
